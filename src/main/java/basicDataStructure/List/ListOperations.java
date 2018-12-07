@@ -165,22 +165,67 @@ public class ListOperations {
         return false;
     }
 
+
+    /**
+     * 判断一个单链表中是否有环, 快慢指针，如果有环，返回快慢指针第一次相遇点
+     */
+    public static Node getCircleNode(Node head) {
+
+        if(head == null){
+            return null;
+        }
+        if(head.next == null){
+            return  null;
+        }
+        Node fast = head;
+        Node slow = head;
+        //有环的话，逻辑上是走不到尾部的，因为没有尾部，是环
+        while(fast != null && slow != null){
+            slow = slow.next;
+            if(fast.next != null){
+                fast = fast.next.next;
+            }else{
+                fast = fast.next;
+            }
+
+            if(slow == fast){
+                return slow;
+            }
+        }
+        return null;
+    }
+
     /**
      *求进入环中的第一个节点
+     * 逻辑推是可以的，但是快速思考是利用最小数据量具体量化预演一遍，这样最容易理清楚思路
      */
     public static Node getFirstNodeInCycle(Node head) {
 
-        return null;
-
-
+        //首先要确认有没有环，尽管这个方法的前提应该是有环的，但没环也要能处理
+        Node circle =  getCircleNode(head);
+        if(circle == null){
+            return null;
+        }
+        Node start = head;
+        //已经判断有环了
+        while(true){
+            if(start != circle){
+                start = start.next;
+                circle = circle.next;
+            }else {
+                return start;
+            }
+        }
     }
 
     /**
      *  给出一单链表头指针pHead和一节点指针pToBeDeleted，O(1)时间复杂度删除节点pToBeDeleted: delete
      */
     public static void delete(Node head, Node toDelete){
-
-
+            //这是个思维陷阱，其实删的不是这个节点本身，而是下一个结点，把后面的值复制到要删除节点上
+            Node next = toDelete.next;
+            toDelete.val = next.val;
+            toDelete.next = next.next;
     }
 
 
@@ -280,8 +325,8 @@ public class ListOperations {
         nodeCircle2.next = nodeCircle3;
         nodeCircle3.next = nodeCircle4;
         nodeCircle4.next = nodeCircle5;
-        nodeCircle5.next = nodeCircle3;
-
+        nodeCircle5.next = nodeCircle6;
+        nodeCircle6.next = nodeCircle3;
 
         printList(head);
         //printList(head2);
@@ -296,6 +341,12 @@ public class ListOperations {
         System.out.println("第一个相交结点为:" + intersectNode.val);
         Boolean isCircle = hasCycle(headCircle);
         System.out.println("是否相交:" + isCircle);
+        Node firstCircleNode = getFirstNodeInCycle(headCircle);
+        System.out.println("环第一个节点：" + firstCircleNode.val);
+
+
+        delete(head,node3);
+        printList(head);
     }
 
 }
