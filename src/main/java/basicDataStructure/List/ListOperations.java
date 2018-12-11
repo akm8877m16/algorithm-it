@@ -13,6 +13,16 @@ package basicDataStructure.List;
 public class ListOperations {
 
     /**
+     * 从尾到头打印链表
+     * 自然想到用栈，用栈自然想到用递归，除非明确要求用递归，自然栈的鲁棒性好
+     * @param head
+     */
+    public static void printReverse(Node head){
+
+
+    }
+
+    /**
      * 知两个单链表pHead1 和pHead2 各自有序，把它们合并成一个链表依然有序
      *
      * @param pHead1
