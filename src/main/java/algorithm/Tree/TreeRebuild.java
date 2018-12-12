@@ -32,8 +32,7 @@ public class TreeRebuild {
                 return null;
             }
 
-            TreeNode head = new TreeNode();
-            head.val = preOrderList[0];
+            TreeNode head = new TreeNode(preOrderList[0]);
             //确认左右子树的遍历序列
             int i;
             int[] inOrderLeft = null;
