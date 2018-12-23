@@ -8,6 +8,13 @@ package algorithm.DP;
  *  可以看做是迷宫问题的一种，但不是求最优路径啥的，而是统计有几种路径
  *  可以走
  *
+ *  类似的变形：
+ *  青蛙跳问题：
+ *
+ *  贴瓷砖问题：
+ *
+ *
+ *
  * @author wb-ywh474663
  * @version $Id: MatrixMovingWaysCalculate.java, v 0.1 2018年12月10日 18:39 wb-ywh474663 Exp $
  */

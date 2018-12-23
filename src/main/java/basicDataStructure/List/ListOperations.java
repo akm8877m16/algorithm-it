@@ -3,6 +3,8 @@
  */
 package basicDataStructure.List;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  *  链表的基本操作
  *
@@ -230,6 +232,9 @@ public class ListOperations {
 
     /**
      *  给出一单链表头指针pHead和一节点指针pToBeDeleted，O(1)时间复杂度删除节点pToBeDeleted: delete
+     *  这样写其实还不够，因为两种边界情况没有考虑到
+     *  1 只有一个节点，head == toDelete
+     *  2 toDelete是尾节点，这个时候只能从头遍历
      */
     public static void delete(Node head, Node toDelete){
             //这是个思维陷阱，其实删的不是这个节点本身，而是下一个结点，把后面的值复制到要删除节点上
@@ -291,6 +296,21 @@ public class ListOperations {
             temp = temp.next;
         }
         return count;
+    }
+
+    /**
+     * 删除有序链表中重复的节点
+     * 比如 1-2-3-3-4-4-5
+     * 删除后变成 1-2-5
+     *
+     * 思路： 如果node1.val != node2.val, 那么deleteDuplicate(node1) 就是deleteDuplicate(node2)
+     *        如果node1.val == node2.val，那就要
+     * @param head
+     * @return
+     */
+    public static Node deleteDuplicate(Node head){
+
+
     }
 
     public static void main(String[] args){
