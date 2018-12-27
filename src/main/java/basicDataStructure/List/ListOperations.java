@@ -310,6 +310,7 @@ public class ListOperations {
      */
     public static Node deleteDuplicate(Node head){
 
+        return null;
 
     }
 
