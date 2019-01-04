@@ -4,17 +4,17 @@
 package ThreadOperation;
 
 /**
- * ÈçºÎÈÃ AÏß³ÌµÈ´ýBÏß³ÌÖ´ÐÐÍê±Ï£¬CÏß³ÌµÈ´ýAÏß³ÌÖ´ÐÐÍê±Ï£¿
- * Ò²¾ÍÊÇÖ´ÐÐË³Ðò   B  ->  A -> C
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ Aï¿½ß³ÌµÈ´ï¿½Bï¿½ß³ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ï£ï¿½Cï¿½ß³ÌµÈ´ï¿½Aï¿½ß³ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ï£ï¿½
+ * Ò²ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ë³ï¿½ï¿½   B  ->  A -> C
  *                  t2 -> t1 ->t3
  * @author wb-ywh474663
- * @version $Id: MultiThreadSerialOperation.java, v 0.1 2018Äê12ÔÂ01ÈÕ 11:37 wb-ywh474663 Exp $
+ * @version $Id: MultiThreadSerialOperation.java, v 0.1 2018ï¿½ï¿½12ï¿½ï¿½01ï¿½ï¿½ 11:37 wb-ywh474663 Exp $
  */
 public class MultiThreadSerialOperation {
 
     public static void main(String[] args){
 
-        Thread t2 = new Thread(new Runnable() {
+        final Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -26,7 +26,7 @@ public class MultiThreadSerialOperation {
             }
         },"B");
 
-        Thread t1 = new Thread(new Runnable() {
+        final Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -39,7 +39,7 @@ public class MultiThreadSerialOperation {
             }
         },"A");
 
-        Thread t3 = new Thread(new Runnable() {
+        final Thread t3 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
