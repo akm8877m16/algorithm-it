@@ -15,7 +15,6 @@ public class MultiThreadSerialOperation {
     public static void main(String[] args){
 
         final Thread t2 = new Thread(new Runnable() {
-            @Override
             public void run() {
                 try {
                     System.out.println("I am thread B");
@@ -27,7 +26,6 @@ public class MultiThreadSerialOperation {
         },"B");
 
         final Thread t1 = new Thread(new Runnable() {
-            @Override
             public void run() {
                 try {
                     t2.join();
@@ -40,7 +38,6 @@ public class MultiThreadSerialOperation {
         },"A");
 
         final Thread t3 = new Thread(new Runnable() {
-            @Override
             public void run() {
                 try {
                     t1.join();

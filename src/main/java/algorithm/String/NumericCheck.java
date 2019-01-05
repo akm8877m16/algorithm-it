@@ -35,41 +35,25 @@ public class NumericCheck {
                 scanResult++;
                 if(scanResult != str.length()){
                     scanResult = scanUnsignedInteger(str,scanResult);
-                    if(scanResult != str.length()){
-                        if(str.charAt(scanResult) == 'e'||str.charAt(scanResult) == 'E'){
-                            scanResult++;
-                            if(scanResult != str.length()){
-                                scanResult = scanInteger(str,scanResult);
-                                if(scanResult != str.length()){
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }else{
-                            if(scanResult != str.length()){
-                                return false;
-                            }
-                            return true;
-                        }
-                    }
+                }else {
                     return true;
                 }
-                return true;
-            }else if(str.charAt(scanResult) == 'e'||str.charAt(scanResult) == 'E'){
-                scanResult++;
-                if(scanResult != str.length()){
-                    scanResult = scanInteger(str,scanResult);
+            }
+            if(scanResult != str.length()){
+                if(str.charAt(scanResult) == 'e'||str.charAt(scanResult) == 'E'){
+                    scanResult++;
                     if(scanResult != str.length()){
-                        return false;
+                        scanResult = scanInteger(str,scanResult);
+                        if(scanResult != str.length()){
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
+                    return false;
 
                 }
                 return false;
-
             }
-            return false;
         }
         return true;
     }
