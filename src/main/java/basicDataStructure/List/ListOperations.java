@@ -3,8 +3,6 @@
  */
 package basicDataStructure.List;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  *  链表的基本操作
  *
@@ -25,6 +23,8 @@ public class ListOperations {
     }
 
     /**
+     * 剑指Offer 面试题25:
+     * 注意鲁棒性，防御性编程的习惯要养成
      * 知两个单链表pHead1 和pHead2 各自有序，把它们合并成一个链表依然有序
      *
      * @param pHead1
@@ -208,7 +208,14 @@ public class ListOperations {
     }
 
     /**
-     *求进入环中的第一个节点
+     * 剑指Offer 面试题23：
+     * 书中的思路还有一些不同，确认环存在后，先算出环的长度n，然后两个指针
+     * 隔n移动，碰到的点就是环入口，反而麻烦了，
+     *
+     * 其实可以发现，如果环有n个节点，链表有m个节点，入口不就是m-n对应的节点嘛，
+     * 但主要m不知道，遍历一遍又不划算，所以不能这么做
+     *
+     * 求进入环中的第一个节点
      * 逻辑推是可以的，但是快速思考是利用最小数据量具体量化预演一遍，这样最容易理清楚思路
      */
     public static Node getFirstNodeInCycle(Node head) {
@@ -244,11 +251,16 @@ public class ListOperations {
     }
 
 
-        /**
-             * 链表反转
-             * @param head
-             * @return
-             */
+    /**
+     * 剑指Offer 面试题 24： 链表反转
+     * 2019/01/
+     * 这题要重新检查一下鲁棒性
+     *
+     * 此外，递归的思路也写一下
+     *
+     * @param head
+     * @return
+     */
     public static Node reverse(Node head){
 
         if(head == null ){
@@ -303,26 +315,72 @@ public class ListOperations {
      * 比如 1-2-3-3-4-4-5
      * 删除后变成 1-2-5
      *
-     * 思路： 如果node1.val != node2.val, 那么deleteDuplicate(node1) 就是deleteDuplicate(node2)
-     *        如果node1.val == node2.val，那就要
+     * 思路： 条件1: 如果node1.val != node2.val, 那么deleteDuplicate(node1) 就是deleteDuplicate(node2)
+     *       条件2: 如果node1.val == node2.val，那就要往后找到满足条件1的情况
      * @param head
      * @return
      */
     public static Node deleteDuplicate(Node head){
+        /** 空链表 */
+        if(head == null){
+            return null;
+        }
+        /** 单个节点链表 */
+        if(head.next == null){
+            return head;
+        }
+
+        Node p1 = head;
+        Node p2 = head.next;
+        if(p1.val != p2.val){
+            p1.next = deleteDuplicate(p2);
+            return p1;
+        }
+        /** p1.val == p2.val   */
+        while(p2.next != null){
+            p2 = p2.next;
+            if(p1.val != p2.val){
+                return deleteDuplicate(p2);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 剑指Offer 22题： 链表中倒数第k个节点 k从1开始算
+     * 注意几点： 1 鲁棒性
+     *          2 链表只能遍历一遍，怎么实现：使用两个指针，这个思路很常见
+     *
+     * @param head
+     * @return
+     */
+    public static Node findKthToTail(Node head){
 
         return null;
 
+    }
+
+    /**
+     * 求链表的中间节点，如果链表中的节点总是是奇数，则返回中间节点，如果节点总是是偶数，则返回中间两个节点中的任意一个
+     * 思路同样是两个指针遍历
+     * 注意鲁棒性
+     * @param head
+     * @return
+     */
+    public static Node findMiddle(Node head){
+
+        return null;
     }
 
     public static void main(String[] args){
 
         Node head = new Node(3);
         Node node1 = new Node(5);
-        Node node2 = new Node(9);
+        Node node2 = new Node(19);
         Node node3 = new Node(19);
-        Node node4 = new Node(27);
+        Node node4 = new Node(17);
         Node node5 = new Node(32);
-        Node node6 = new Node(41);
+        Node node6 = new Node(32);
         head.next = node1;
         node1.next=node2;
         node2.next=node3;
@@ -330,6 +388,10 @@ public class ListOperations {
         node4.next=node5;
         node5.next=node6;
 
+        Node result = deleteDuplicate(head);
+        printList(result);
+
+        /*
         Node head2 = new Node(1);
         Node node21 = new Node(5);
         Node node22 = new Node(8);
@@ -378,6 +440,10 @@ public class ListOperations {
 
         delete(head,node3);
         printList(head);
+        */
+
+
+
     }
 
 }
