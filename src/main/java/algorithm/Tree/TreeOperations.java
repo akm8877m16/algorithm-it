@@ -3,6 +3,10 @@ package algorithm.Tree;
 
 import sun.reflect.generics.tree.Tree;
 
+import java.util.Stack;
+
+import static algorithm.Tree.TreeTraversal.preOrder;
+
 public class TreeOperations {
 
     /**
@@ -59,8 +63,59 @@ public class TreeOperations {
         return checkIfHasSubtree(pRoot1.left,pRoot2.left)&&checkIfHasSubtree(pRoot1.right,pRoot2.right);
     }
 
+
+    /**
+     * 剑指Offer 面试题27: 二叉树镜像
+     * 输入一个二叉树，该函数输出它的镜像。
+     *
+     * 处理递归，思考一下非递归怎么搞？
+     *
+     * 思路: 遍历交换左右节点
+     * @param head
+     */
+    public static void mirrorTree(TreeNode head){
+        /** 非递归，考虑如何利用前序遍历的思路，谦虚是根左右，正好可以遍历时交换左右节点 */
+
+        if(head == null){
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(head);
+        TreeNode temp;
+        /**利用前序遍历, 此外空的位置，*/
+        while(!stack.isEmpty()){
+            TreeNode node =stack.pop();
+            if(node.left != null || node.right != null){
+                temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+            }
+            if(node.right!=null){
+                stack.push(node.right);
+            }
+            if(node.left != null){
+                stack.push(node.left);
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * 剑指Offer 面试题28: 对称二叉树
+     * 实现一个函数，判断一颗二叉树是不是对称的
+     *
+     * 思路： 遍历，对称条件:根左右 和 根右左是一样的，要把null位置一起考虑进去
+     * @param head
+     */
+    public static void treeIsSymmetrical(TreeNode head){
+         return;
+    }
+
+
     public static void main(String[] args){
 
+        /*
         TreeNode pHead = new TreeNode(1);
         TreeNode p2 = new TreeNode(2);
         TreeNode p3 = new TreeNode(3);
@@ -104,6 +159,21 @@ public class TreeOperations {
 
         boolean result4 = hasSubtree(pHead,subTreeHead3);
         System.out.println(result4);
+        */
+
+        TreeNode head = new TreeNode(7);
+        //TreeNode node8 = new TreeNode(8);
+        //TreeNode node9 = new TreeNode(9);
+        //TreeNode node10 = new TreeNode(10);
+        //TreeNode node11 = new TreeNode(11);
+        //head.left = node8;
+        //head.right = node9;
+        //node8.left = node10;
+        //node8.right = node11;
+
+        preOrder(head);
+        mirrorTree(head);
+        preOrder(head);
 
     }
 
