@@ -3,6 +3,9 @@ package algorithm.Tree;
 
 import sun.reflect.generics.tree.Tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 import static algorithm.Tree.TreeTraversal.preOrder;
@@ -108,8 +111,81 @@ public class TreeOperations {
      * 思路： 遍历，对称条件:根左右 和 根右左是一样的，要把null位置一起考虑进去
      * @param head
      */
-    public static void treeIsSymmetrical(TreeNode head){
-         return;
+    public static boolean treeIsSymmetrical(TreeNode head){
+
+        if(head == null){
+            return true;
+        }
+        List<TreeNode> list1 = preOrderList(head,true);
+        List<TreeNode> list2 = preOrderList(head,false);
+        TreeNode temp1;
+        TreeNode temp2;
+        for(int i=0;i< list1.size();i++){
+            temp1 = list1.get(i);
+            temp2 = list2.get(i);
+            if(temp1 == null && temp2 == null){
+                continue;
+            }
+            if(temp1 == null && temp2 != null){
+                return false;
+            }
+            if(temp2 == null && temp1 != null){
+                return false;
+            }
+            if(temp1.val != temp2.val){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 返回前序遍历(根左右)或者根右左遍历的树节点列表，包含null, 那也就是返回完整的二叉树结构
+     * @param head
+     * @param isPre  true 根左右  false 根右左
+     * @return
+     */
+    public static List<TreeNode> preOrderList(TreeNode head,boolean isPre){
+
+        if(head == null){
+            return null;
+        }
+        LinkedList<TreeNode> list = new LinkedList<TreeNode>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(head);
+        /** 这里有一个问题，null要放入的话，怎么判断遍历结束了 */
+        while(!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            list.add(node);
+            /** 叶子节点，不需要继续了，否则list中多加Null，没有意义 */
+            if(node==null){
+                continue;
+            }
+            if(isPre){
+                stack.push(node.right);
+                stack.push(node.left);
+            }else{
+                stack.push(node.left);
+                stack.push(node.right);
+            }
+        }
+        return list;
+    }
+
+    public static void printListWithNull(List<TreeNode> list){
+        if(list == null || list.size() ==0){
+            return;
+        }
+        TreeNode node;
+        for(int i=0;i<list.size();i++){
+            node = list.get(i);
+            if(node == null){
+                System.out.print("null ");
+            }else{
+                System.out.print(node.val + " ");
+            }
+        }
+        System.out.println();
     }
 
 
@@ -161,6 +237,7 @@ public class TreeOperations {
         System.out.println(result4);
         */
 
+        /*
         TreeNode head = new TreeNode(7);
         //TreeNode node8 = new TreeNode(8);
         //TreeNode node9 = new TreeNode(9);
@@ -174,7 +251,28 @@ public class TreeOperations {
         preOrder(head);
         mirrorTree(head);
         preOrder(head);
+        */
 
+        /** 这个测试表明，叶子节点也要考虑  */
+        TreeNode head = new TreeNode(7);
+        TreeNode node8 = new TreeNode(7);
+        TreeNode node9 = new TreeNode(7);
+        TreeNode node10 = new TreeNode(7);
+        TreeNode node11 = new TreeNode(7);
+
+
+
+        head.left = node8;
+        head.right = node9;
+        node8.left = node10;
+        node8.right = node11;
+
+
+
+        boolean result = treeIsSymmetrical(head);
+        System.out.println(result);
+        printListWithNull(preOrderList(head,true));
+        printListWithNull(preOrderList(head,false));
     }
 
 

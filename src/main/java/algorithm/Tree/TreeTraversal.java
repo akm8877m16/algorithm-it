@@ -42,6 +42,32 @@ public class TreeTraversal {
         System.out.println();
     }
 
+    /**
+     * 这个不是前序遍历，但其实很像，这个遍历顺序是根右左
+     * @param head
+     */
+    public static void preOrderRight(TreeNode head){
+        if(head == null){
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.add(head);
+        while(!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            if(node.left != null){
+                stack.add(node.left);
+            }
+            if(node.right != null){
+                stack.add(node.right);
+            }
+            System.out.print(node.val);
+            System.out.print(" ");
+        }
+        System.out.println();
+
+
+    }
+
     /** 先遍历left到底，然后搞right
      * 中序遍历
      * @param head
