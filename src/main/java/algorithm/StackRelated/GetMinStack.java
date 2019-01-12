@@ -6,7 +6,8 @@ package algorithm.StackRelated;
 import java.util.Stack;
 
 /**
- * 实现一个具有获取最小值功能的栈，这个功能就叫 getMin
+ * 剑指Offer 30 定义栈的数据结构，实现一个具有获取最小值功能的栈，这个功能就叫 getMin
+ * 要求：调用min,push,pop的时间复杂度都是O(1)
  * @author wb-ywh474663
  * @version $Id: GetMinStack.java, v 0.1 2018年12月04日 17:25 wb-ywh474663 Exp $
  */

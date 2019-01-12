@@ -124,6 +124,42 @@ public class TreeTraversal {
         System.out.println();
     }
 
+    /**
+     * 剑指Offer 32 从上到下打印二叉树
+     * 就是广度优先遍历
+     *
+     * 解决思路就是利用队列 实现分层
+     *
+     * 扩展思考： 如何广度优先遍历有向图，类似的思路
+     * @param head
+     */
+    public static void printFromTopToBottom(TreeNode head){
+
+        return;
+    }
+
+
+    /**
+     * 作为上题的一个小变形，要求分行打印广度遍历二叉树
+     *
+     * 思路是一样的，就是要考虑如何判断一行结束
+     * @param head
+     */
+    public static void printFromTopToBottomInLines(TreeNode head){
+
+        return;
+    }
+
+    /**
+     * 再在上一题的基础上做一些改变，要求分行打印广度遍历二叉树，而且，要求实现之字形打印二叉树，即
+     * 第一层从左到右打印，第二层从右到左打印，第三层从左到右打印，以此类推
+     * @param head
+     */
+    public static void printFromTopToBottomInLines2(TreeNode head){
+
+        return;
+    }
+
 
     public static void main(String[] args){
         TreeNode head = new TreeNode(1);
