@@ -46,12 +46,14 @@ public class FindPath {
             /** 符合条件的路径  */
             printPath(path);
         }else{
-
+            if(root.left != null){
+                findPath(root.left,expectedValue,path,sum);
+            }
+            if(root.right != null){
+                findPath(root.right,expectedValue,path,sum);
+            }
         }
-
-
-
-
+        path.removeLast(); //当成栈用，要移除最后一个
     }
 
     private static void printPath(LinkedList<TreeNode> list){
@@ -76,7 +78,35 @@ public class FindPath {
 
 
     public static void main(String[] args){
+        TreeNode root = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(7);
+        TreeNode node6 = new TreeNode(2);
+        TreeNode node7 = new TreeNode(3);
+        TreeNode node8 = new TreeNode(3);
+        TreeNode node9 = new TreeNode(11);
+        TreeNode node13 = new TreeNode(1);
+        TreeNode node14 = new TreeNode(6);
+        TreeNode node15 = new TreeNode(3);
 
+        root.left = node2;
+        root.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node3.left = node6;
+        node3.right = node7;
+        node4.left = node8;
+        node4.right = node9;
+        node6.left = node13;
+        node7.left = node14;
+        node7.right = node15;
+
+        findPath(root,7);
+
+        TreeNode root2 = new TreeNode(1);
+        findPath(root2,23);
 
     }
 
