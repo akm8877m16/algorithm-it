@@ -17,6 +17,9 @@ import java.util.Arrays;
  *
  * 思路上的一个漏洞：其实多种情况，利用递归穷举就可以了，不符合就返回false而已，不用
  * 每种情况都if else判断情况，只会把自己搞乱
+ *
+ * 2019/01/30 思路复盘
+ * 正则表达式，体现的思路是回溯的思想
  * @author wb-ywh474663
  * @version $Id: RegMatch.java, v 0.1 2018年12月25日 10:20 wb-ywh474663 Exp $
  */
