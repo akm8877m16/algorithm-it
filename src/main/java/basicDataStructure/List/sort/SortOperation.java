@@ -4,7 +4,7 @@
 package basicDataStructure.List.sort;
 
 /**
- *
+ * 快速排序
  * @author wb-ywh474663
  * @version $Id: SortOperation.java, v 0.1 2018年11月27日 23:35 wb-ywh474663 Exp $
  */
